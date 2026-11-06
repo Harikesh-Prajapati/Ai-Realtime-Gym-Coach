@@ -1,0 +1,367 @@
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+  --bg: #0A0D14;
+  --bg-sidebar: #111520;
+  --bg-card: #181D2A;
+  --bg-input: #0F131D;
+  --border: 1px solid rgba(255, 255, 255, 0.08);
+  --border-hover: 1px solid rgba(255, 255, 255, 0.25);
+  --font: 'AdobeClean', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* =========================================================
+   GLOBAL THEME
+========================================================= */
+
+.stApp {
+  background-color: var(--bg);
+  color: #fff;
+}
+
+[data-testid="stSidebar"] {
+  background-color: var(--bg-sidebar);
+}
+
+/* Let the page background show through the top bar */
+[data-testid="stHeader"] {
+  background: transparent;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   Applied to the main area AND the sidebar (the sidebar is
+   not inside .block-container, so it needs its own selector)
+========================================================= */
+
+.block-container,
+.block-container *,
+[data-testid="stSidebar"] *,
+button,
+input,
+textarea {
+  font-family: var(--font) !important;
+}
+
+/* Keep Streamlit's icon font, otherwise icons show up as
+   text such as "keyboard_arrow_down" */
+[data-testid="stIconMaterial"],
+.material-icons,
+.material-symbols-rounded,
+.material-symbols-outlined {
+  font-family: 'Material Symbols Rounded', 'Material Symbols Outlined' !important;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.block-container {
+  padding: 4rem 3rem 3rem 3rem !important;  /* top clears the fixed header */
+  max-width: 1200px !important;
+}
+
+@media (max-width: 640px) {
+  .block-container {
+    padding: 4rem 1rem 2rem 1rem !important;
+  }
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button,
+.stButton button,
+.stDownloadButton button,
+.MuiBox-root button,
+[data-testid="stButton"] button,
+[data-testid="stBaseButton-secondaryFormSubmit"] {
+  background-color: var(--bg-card) !important;
+  border: var(--border) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+button:hover,
+.stButton button:hover,
+.MuiBox-root button:hover {
+  border: var(--border-hover) !important;
+  background-color: #20263A !important;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35) !important;
+  outline-offset: 2px;
+}
+
+/* Primary action (e.g. "Log in", "Create account"): solid light button */
+button[data-testid="stBaseButton-primaryFormSubmit"],
+button[data-testid="stBaseButton-primary"] {
+  background-color: #F5F7FA !important;
+  border: 1px solid #F5F7FA !important;
+  color: #0A0D14 !important;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+}
+
+button[data-testid="stBaseButton-primaryFormSubmit"] p,
+button[data-testid="stBaseButton-primary"] p {
+  color: #0A0D14 !important;
+  font-weight: 600;
+}
+
+button[data-testid="stBaseButton-primaryFormSubmit"]:hover,
+button[data-testid="stBaseButton-primary"]:hover {
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+/* =========================================================
+   INPUTS, SELECTS & MENUS
+========================================================= */
+
+input,
+textarea,
+[data-baseweb="select"] > div,
+[data-baseweb="input"],
+[data-baseweb="base-input"],
+[data-testid="stNumberInputContainer"],
+[data-testid="stTextInput"] > div {
+  background-color: var(--bg-input) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+}
+
+[data-baseweb="input"] {
+  border: var(--border) !important;
+  transition: border-color 0.15s ease;
+}
+
+[data-baseweb="input"]:focus-within {
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Show/hide-password eye button: no box around it */
+[data-testid="stTextInputRootElement"] button,
+[data-testid="stTextInputRootElement"] button:hover {
+  background: transparent !important;
+  border: none !important;
+}
+
+[data-baseweb="popover"],
+[data-baseweb="popover"] > div,
+[data-baseweb="menu"],
+[data-baseweb="popover"] ul,
+div[role="menu"],
+div[role="listbox"] {
+  background-color: var(--bg-card) !important;
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   TABS
+========================================================= */
+
+[data-baseweb="tab-list"] {
+  gap: 0;
+}
+
+button[role="tab"] {
+  flex: 1;
+  justify-content: center;
+  padding: 0.8rem 1rem;
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+button[role="tab"]:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+button[role="tab"][aria-selected="true"] {
+  color: #fff !important;
+}
+
+[data-baseweb="tab-highlight"] {
+  background-color: #fff !important;
+  height: 2px;
+}
+
+[data-baseweb="tab-border"] {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* =========================================================
+   METRICS  (label on the left, value on the right)
+========================================================= */
+
+[data-testid="stMetric"] {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg-card);
+  border: var(--border);
+  border-radius: 0;
+  padding: 1rem 1.2rem;
+}
+
+[data-testid="stMetricLabel"] {
+  opacity: 0.6;
+}
+
+[data-testid="stMetricLabel"] p {
+  font-size: 15px !important;
+}
+
+[data-testid="stMetricValue"] {
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+}
+
+/* =========================================================
+   ALERTS (st.info / st.success / st.warning)
+========================================================= */
+
+[data-testid="stAlert"],
+[data-testid="stAlertContainer"] {
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   TABLES & DATAFRAMES
+========================================================= */
+
+[data-testid="stTable"],
+[data-testid="stTable"] table,
+[data-testid="stTable"] th,
+[data-testid="stTable"] td,
+[data-testid="stDataFrame"],
+[data-testid="stDataFrame"] div {
+  border-radius: 0 !important;
+}
+
+[data-testid="stTable"] table {
+  width: 100%;
+}
+
+[data-testid="stTable"] th,
+[data-testid="stTable"] td {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* =========================================================
+   CONTAINERS, CARDS & POPUPS (square corners everywhere)
+========================================================= */
+
+[data-testid="stExpander"],
+[data-testid="stExpander"] details,
+[data-testid="stTabs"],
+[data-testid="stPopover"],
+[data-testid="stStatusWidget"],
+[data-testid="stVerticalBlockBorderWrapper"],
+[data-testid="stHeadingWithActionElements"],
+[data-testid="stSidebarNavLink"] {
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   VIDEO (WebRTC stream)
+========================================================= */
+
+video {
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+
+/* =========================================================
+   FORMS (login / create account)
+========================================================= */
+
+[data-testid="stForm"] {
+  margin-top: 0.75rem !important;
+  padding: 1.75rem 1.5rem !important;
+  background-color: var(--bg-card) !important;
+  border: var(--border) !important;
+  border-radius: 0 !important;
+  color: #fff;
+}
+
+[data-testid="stForm"] label p {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.auth-hero {
+  text-align: center;
+  margin: 0.5rem 0 1.75rem 0;
+}
+
+.auth-badge {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: var(--bg-card);
+  border: var(--border);
+}
+
+.auth-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.auth-sub {
+  margin: 0.5rem 0 1.1rem 0;
+  opacity: 0.6;
+}
+
+.auth-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.auth-chip {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  background: var(--bg-card);
+  border: var(--border);
+  opacity: 0.9;
+}
+
+.auth-form-title {
+  margin-top: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.auth-form-sub {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  opacity: 0.55;
+}
+
+.auth-note {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.45;
+}
